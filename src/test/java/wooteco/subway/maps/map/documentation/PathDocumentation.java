@@ -62,7 +62,7 @@ public class PathDocumentation extends Documentation {
                                headerWithName("Authorization").description("Bearer auth credentials")),
                            responseFields(
                                fieldWithPath("stations[].id").type(JsonFieldType.NUMBER).description("경로에 속하는 역 id"),
-                               fieldWithPath("stations[].name").type(JsonFieldType.STRING).description("경로에 속하는 역 id"),
+                               fieldWithPath("stations[].name").type(JsonFieldType.STRING).description("경로에 속하는 역 이름"),
                                fieldWithPath("duration").type(JsonFieldType.NUMBER).description("최소 시간"),
                                fieldWithPath("distance").type(JsonFieldType.NUMBER).description("최단 거리"),
                                fieldWithPath("fare").type(JsonFieldType.NUMBER).description("요금")
