@@ -13,6 +13,11 @@ endif::[]
 [[resources]]
 = Resources
 
+[[resources-paths]]
+=== 경로 조회
+
+operation::paths[snippets='http-request,http-response,request-headers,request-fields,response-fields']
+
 [[resources-favorites]]
 == Favorite
 
