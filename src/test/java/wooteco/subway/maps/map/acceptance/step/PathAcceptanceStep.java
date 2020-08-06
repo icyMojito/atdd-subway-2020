@@ -28,14 +28,20 @@ public class PathAcceptanceStep {
         PathResponse pathResponse = response.as(PathResponse.class);
         List<Long> stationIds = pathResponse.getStations().stream()
                 .map(StationResponse::getId)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
 
         assertThat(stationIds).containsExactlyElementsOf(expectedPath);
     }
 
-    public static void 총_거리와_소요_시간을_함께_응답함(ExtractableResponse<Response> response, int totalDistance, int totalDuration) {
+    public static void 총_거리와_소요_시간을_함께_응답함(ExtractableResponse<Response> response, int totalDistance,
+                                           int totalDuration) {
         PathResponse pathResponse = response.as(PathResponse.class);
         assertThat(pathResponse.getDistance()).isEqualTo(totalDistance);
         assertThat(pathResponse.getDuration()).isEqualTo(totalDuration);
+    }
+
+    public static void 최단_거리에_따른_요금을_응답(ExtractableResponse<Response> response, int totalFare) {
+        PathResponse pathResponse = response.as(PathResponse.class);
+        assertThat(pathResponse.getFare()).isEqualTo(totalFare);
     }
 }

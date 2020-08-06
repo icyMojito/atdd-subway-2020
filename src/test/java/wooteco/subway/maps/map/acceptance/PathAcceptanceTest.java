@@ -79,6 +79,16 @@ public class PathAcceptanceTest extends AcceptanceTest {
         총_거리와_소요_시간을_함께_응답함(response, 4, 3);
     }
 
+    @DisplayName("두 역의 최단 거리 경로를 바탕으로 요금을 계산한다.")
+    @Test
+    void calculateFareByDistance() {
+        //when
+        ExtractableResponse<Response> response = 거리_경로_조회_요청("DISTANCE", 1L, 3L);
+
+        //then_교대,강남,양재 -> 총 4km -> 1,250원
+        최단_거리에_따른_요금을_응답(response, 1_250);
+    }
+
     private Long 지하철_노선_등록되어_있음(String name, String color) {
         ExtractableResponse<Response> createLineResponse1 = LineAcceptanceStep.지하철_노선_등록되어_있음(name, color);
         return createLineResponse1.as(LineResponse.class).getId();
