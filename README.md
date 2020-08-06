@@ -11,45 +11,15 @@
 
 # 레벨2 최종 미션 - 지하철 노선도 애플리케이션
 
-## 🎯 요구사항
-- [프론트엔드 미션](https://github.com/woowacourse/atdd-subway-2020/blob/master/frontend-mission.md)
-- [백엔드 미션](https://github.com/woowacourse/atdd-subway-2020/blob/master/backend-mission.md)
+#### 경로 조회 응답 결과에 요금 정보 추가하기
 
-## 🤔 미션 제출 방법
-- 진행 방식은 오프라인 코딩 테스트와 동일하다.
-- 저장소를 Fork하여 자신의 저장소에서 미션 구현을 완료하고, Pull Request를 통해 미션을 제출한다.
-- Pull Request를 보낸 후 woowa_course@woowahan.com로 메일을 발송한다.
+- 사용자가 조회한 경로를 찾는다.
 
-## 😌 레벨2 최종 미션을 임하는 자세
-레벨2 과정을 스스로의 힘으로 구현했다는 것을 증명하는데 집중해라
-- [ ] 기능 목록을 잘 작성한다.  
-- [ ] 자신이 구현한 기능에 대해 인수 테스트를 작성한다.
-- [ ] 자신이 구현한 코드에 대해 단위 테스트를 작성한다.
-- [ ] TDD 사이클 이력을 볼 수 있도록 커밋 로그를 잘 작성한다.
-- [ ] 사용자 친화적인 예외처리를 고민한다.
-- [ ] 읽기 좋은 코드를 만든다.
+- 찾은 경로와 요금 계산 기준에 따라 최종 요금을 계산한다.
 
-## 🚀 Getting Started
-
-### Install
-#### npm 설치
-```
-cd frontend
-npm install
-```
-> `frontend` 디렉토리에서 수행해야 합니다.
-
-### Usage
-#### webpack server 구동
-```
-npm run dev
-```
-#### application 구동
-```
-./gradlew bootRun
-```
-<br>
-
-## 📝 License
-
-This project is [MIT](https://github.com/woowacourse/atdd-subway-2020/blob/master/LICENSE.md) licensed.
+- - 10km 이하: 1,250원
+  - 10km 초과 ~ 50km 이하: 5km마다 100원
+  - 50km 초과: 8km마다 100원
+  - 추가 요금이 있는 노선들을 이용할 경우 가장 높은 추가 요금만 거리별 요금에 합산
+  - 로그인 사용자가 13세 이상~19세 미만이면 350원을 뺀 금액의 80%로 책정
+  - 로그인 사용자가 6세 이상~13세 미만이면 350원을 뺀 금액의 50%로 책정
