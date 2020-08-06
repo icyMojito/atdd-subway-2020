@@ -1,15 +1,16 @@
 package wooteco.subway.maps.line.application;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wooteco.subway.maps.line.domain.Line;
 import wooteco.subway.maps.line.domain.LineRepository;
+import wooteco.subway.maps.line.domain.LineStation;
 import wooteco.subway.maps.line.dto.LineRequest;
 import wooteco.subway.maps.line.dto.LineResponse;
 import wooteco.subway.maps.line.dto.LineStationResponse;
 import wooteco.subway.maps.station.application.StationService;
 import wooteco.subway.maps.station.domain.Station;
 import wooteco.subway.maps.station.dto.StationResponse;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,10 @@ public class LineService {
         return lineRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
+    public List<Line> findLinesByIds(List<Long> ids) {
+        return lineRepository.findAllById(ids);
+    }
+
     public void updateLine(Long id, LineRequest lineUpdateRequest) {
         Line persistLine = lineRepository.findById(id).orElseThrow(RuntimeException::new);
         persistLine.update(lineUpdateRequest.toLine());
@@ -51,14 +56,14 @@ public class LineService {
         List<Line> lines = findLines();
 
         return lines.stream()
-                .map(line -> LineResponse.of(line))
+            .map(LineResponse::of)
                 .collect(Collectors.toList());
     }
 
     public LineResponse findLineResponsesById(Long id) {
         Line line = lineRepository.findById(id).orElseThrow(RuntimeException::new);
         List<Long> stationIds = line.getStationInOrder().stream()
-                .map(it -> it.getStationId())
+            .map(LineStation::getStationId)
                 .collect(Collectors.toList());
 
         Map<Long, Station> stations = stationService.findStationsByIds(stationIds);

@@ -85,8 +85,8 @@ public class PathAcceptanceTest extends AcceptanceTest {
         //when
         ExtractableResponse<Response> response = 거리_경로_조회_요청("DISTANCE", 1L, 3L);
 
-        //then_교대,강남,양재 -> 총 4km -> 1,250원
-        최단_거리에_따른_요금을_응답(response, 1_250);
+        //then_교대,강남,양재 -> 총 4km -> 1,250원 + 노선 추가금(900원)
+        최단_거리에_따른_요금을_응답(response, 2_150);
     }
 
     private Long 지하철_노선_등록되어_있음(String name, String color, String extraFare) {

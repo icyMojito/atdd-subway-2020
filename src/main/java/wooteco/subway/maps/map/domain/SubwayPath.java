@@ -19,10 +19,16 @@ public class SubwayPath {
     public List<Long> extractStationId() {
         List<Long> stationIds = Lists.newArrayList(lineStationEdges.get(0).getLineStation().getPreStationId());
         stationIds.addAll(lineStationEdges.stream()
-                .map(it -> it.getLineStation().getStationId())
-                .collect(Collectors.toList()));
+                              .map(it -> it.getLineStation().getStationId())
+                              .collect(Collectors.toList()));
 
         return stationIds;
+    }
+
+    public List<Long> extractLineIds() {
+        return this.lineStationEdges.stream()
+            .map(LineStationEdge::getLineId)
+            .collect(Collectors.toList());
     }
 
     public int calculateDuration() {
